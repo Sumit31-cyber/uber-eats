@@ -2,12 +2,20 @@ import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react
 import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 
-const RestaurentItems = ({ restaurentData }) => {
+const RestaurentItems = ({ restaurentData, navigation, ...props }) => {
     return (
         <FlatList
             data={restaurentData}
             renderItem={({ item }) => (
                 <TouchableOpacity
+                    onPress={() => navigation.navigate('Details', {
+                        name: item.name,
+                        image: item.image_url,
+                        price: item.prive,
+                        reviews: item.review_count,
+                        rating: item.rating,
+                        categories: item.categories,
+                    })}
                     activeOpacity={1}
                     style={styles.mainContainer}>
                     <Image

@@ -9,7 +9,7 @@ import { Divider } from 'react-native-elements';
 
 const YELP_API_KEY = 'BFCh_SQAE1HTIKeoKgWIG7EYZ0x3CbZtRmxW2l25OxEdtocKLsDJrNamGQALn6zBKo12fsOLKgCEyPAJlXL3mxjRvqzGPJeBgbEkSotSsbsShlX6OSWcmU5fjVpRYnYx';
 
-const Home = () => {
+const Home = ({ navigation }) => {
     const [restaurentData, setRestaurentData] = useState([]);
     const [city, setCity] = useState('sanfrancisco')
     const [activeTab, setActiveTab] = useState('Delivery')
@@ -42,7 +42,7 @@ const Home = () => {
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Catagories />
-                <RestaurentItems restaurentData={restaurentData} />
+                <RestaurentItems restaurentData={restaurentData} navigation={navigation} />
             </ScrollView>
             <Divider width={1} />
             <BottomTab />
