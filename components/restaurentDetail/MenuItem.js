@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View, FlatList, ScrollView } from 'react-nativ
 import React from 'react'
 import { Divider } from 'react-native-elements'
 import BouncyCheckBox from 'react-native-bouncy-checkbox'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const image = 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 
@@ -15,30 +15,30 @@ const data = [{
 },
 {
     id: 2,
-    title: 'Chicken Tandoori',
+    title: 'Fish',
     desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
-    price: '$19.20',
+    price: '$23.20',
     image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 },
 {
     id: 3,
-    title: 'Chicken Tandoori',
+    title: 'Pasta',
     desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
-    price: '$19.20',
+    price: '$56.20',
     image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 },
 {
     id: 4,
-    title: 'Chicken Tandoori',
+    title: 'Momo',
     desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
-    price: '$19.20',
+    price: '$10.20',
     image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 },
 {
     id: 5,
-    title: 'Chicken Tandoori',
+    title: 'Noodles',
     desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
-    price: '$19.20',
+    price: '$33.20',
     image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
 }]
 
@@ -47,10 +47,17 @@ const data = [{
 const MenuItem = ({ restaurentName }) => {
 
     const dispatch = useDispatch();
-    const selectedItem = (item) => dispatch({
+    const selectedItem = (item, checkBoxValue) => dispatch({
         type: "ADD_TO_CART",
-        payload: { ...item, restaurentName: restaurentName }
+        payload: { ...item, restaurentName: restaurentName, checkBoxValue: checkBoxValue }
     })
+
+    const cartItems = useSelector(
+        (state) => state.cartReducer.selectedItems.items
+    )
+
+    const isFoodInCart = (food, cartItems) => Boolean(cartItems.find((item) => item.title === food.title));
+
 
     return (
         <FlatList
@@ -59,7 +66,8 @@ const MenuItem = ({ restaurentName }) => {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.mainContainer}>
                         <BouncyCheckBox
-                            onPress={() => selectedItem(item)}
+                            onPress={(checkBoxValue) => selectedItem(item, checkBoxValue)}
+                            isChecked={isFoodInCart(item, cartItems)}
                             fillColor='#4D8C37'
                             iconStyle={{
                                 borderColor: 'lightgrey',
