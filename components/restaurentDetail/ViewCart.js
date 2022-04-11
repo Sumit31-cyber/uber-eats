@@ -1,8 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Modal, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import OrderItems from './OrderItems'
-
+import { db } from '../../firebase'
+import { doc, setDoc, collection, Timestamp, Firestore, } from 'firebase/firestore'
 const ViewCart = () => {
     const [ModalVisible, setModalVisible] = useState(false)
 
@@ -13,6 +14,23 @@ const ViewCart = () => {
         .reduce((prev, curr) => prev + curr, 0);
 
     let totalUSD = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+    const addOrderToFirebase = () => {
+        const myDoc = doc(db, 'orders', restaurentName)
+        const date = new Date()
+        const docData = {
+            item: items,
+            restaurentName: restaurentName,
+            createdAt: date
+        }
+        setDoc(myDoc, docData).then(() => {
+            alert("Doc Created")
+        }).catch((error) => {
+            alert(error.message)
+        })
+        setModalVisible(false);
+
+    }
 
 
     const styles = StyleSheet.create({
@@ -65,7 +83,9 @@ const ViewCart = () => {
                             justifyContent: 'center'
                         }}>
                             <TouchableOpacity
-                                onPress={() => setModalVisible(false)}
+                                onPress={() => {
+                                    addOrderToFirebase();
+                                }}
                                 style={{
                                     marginTop: 20,
                                     backgroundColor: 'black',
