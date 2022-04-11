@@ -35,7 +35,7 @@ const ViewCart = ({ navigation }) => {
         }).catch((error) => {
             alert(error.message)
         })
-        navigation.navigate("OrderCompleted")
+        // navigation.navigate("OrderCompleted")
 
     }
 
@@ -159,7 +159,7 @@ const ViewCart = ({ navigation }) => {
             {loading ? <View style={{
                 width: '100%',
                 height: '100%',
-                backgroundColor: 'black',
+                backgroundColor: 'rgba(0,0,0,0.5)',
                 position: 'absolute',
                 alignContent: 'center',
                 justifyContent: 'center',
