@@ -23,7 +23,7 @@ let cartReducer = (state = defaultState, action) => {
                 }
             }
 
-            console.log(newState, "👉🏻");
+            // console.log(newState, "👉🏻");
             return newState
         }
 

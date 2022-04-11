@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import RestaurentDetails from './screens/RestaurentDetails';
 import configureStore from './redux/store';
+import OrderCompleted from './screens/OrderCompleted';
 
 const store = configureStore();
 
@@ -23,6 +24,7 @@ const RootNavigation = () => {
                 <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen name="Home" component={Home} options={screenOptions} />
                     <Stack.Screen name="Details" component={RestaurentDetails} options={screenOptions} />
+                    <Stack.Screen name="OrderCompleted" component={OrderCompleted} options={screenOptions} />
                 </Stack.Navigator>
             </NavigationContainer>
         </ReduxProvider>

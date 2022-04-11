@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import OrderItems from './OrderItems'
 import { db } from '../../firebase'
-import { doc, setDoc, collection, Timestamp, Firestore, } from 'firebase/firestore'
-const ViewCart = () => {
+import { doc, setDoc } from 'firebase/firestore'
+const ViewCart = ({ navigation }) => {
     const [ModalVisible, setModalVisible] = useState(false)
 
 
@@ -24,11 +24,12 @@ const ViewCart = () => {
             createdAt: date
         }
         setDoc(myDoc, docData).then(() => {
-            alert("Doc Created")
+
         }).catch((error) => {
             alert(error.message)
         })
         setModalVisible(false);
+        navigation.navigate("OrderCompleted")
 
     }
 
