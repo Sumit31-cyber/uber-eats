@@ -4,42 +4,43 @@ import { Divider } from 'react-native-elements'
 import About from '../components/restaurentDetail/About'
 import MenuItem from '../components/restaurentDetail/MenuItem'
 import ViewCart from '../components/restaurentDetail/ViewCart'
+import FocusedStatusBar from '../components/restaurentDetail/FocusedStatusBar'
 
 
 const foods = [{
     id: 1,
-    title: 'Chicken Tandoori',
-    desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
+    title: ' Seafood paella',
+    desc: 'Shrimp, lobster, mussels and cuttlefish combine with white rice and various herbs, oil and salt in this Valencian dish.',
     price: '$19.20',
-    image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    image: 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_634,c_fill,g_auto,h_357,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F170206165040-dubai-michelin-dining-boca.jpg'
 },
 {
     id: 2,
-    title: 'Fish',
-    desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
+    title: 'Stinky tofu',
+    desc: 'The odor of fermenting tofu is so overpowering many aren\'t able to shake off the memory for months..',
     price: '$23.20',
-    image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    image: 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_634,c_fill,g_auto,h_357,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F170302143134-tofu.jpg'
 },
 {
     id: 3,
-    title: 'Pasta',
-    desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
+    title: 'Chicken parm',
+    desc: 'Melted Parmesan and mozzarella cheese, and a peppery, garlicky tomato sauce drizzled over the top of a chicken.',
     price: '$56.20',
-    image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    image: 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_1100,c_fill,g_auto,h_619,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F170920150817-chicken-parm.jpg'
 },
 {
     id: 4,
-    title: 'Momo',
-    desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
+    title: ' Chili crab',
+    desc: 'Spicy chili-tomato gravy tends to splatter, which is why you need to mop everything up with mini mantou buns.',
     price: '$10.20',
-    image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    image: 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_634,c_fill,g_auto,h_357,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F170306145913-singapore-chili-crab.jpg'
 },
 {
     id: 5,
-    title: 'Noodles',
-    desc: 'Amazind indian dish with tenderloin chicken  off the sizzles 🔥.',
+    title: 'Goi cuon',
+    desc: 'This snack made from pork, shrimp, herbs, rice vermicelli and other ingredients wrapped in rice paper is served at room temperature..',
     price: '$33.20',
-    image: 'https://images.unsplash.com/photo-1617692855027-33b14f061079?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    image: 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_634,c_fill,g_auto,h_357,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F170306134418-goi-cuon.jpg'
 }]
 
 
@@ -48,6 +49,11 @@ const foods = [{
 const RestaurentDetails = ({ route, navigation }) => {
     return (
         <>
+            <FocusedStatusBar
+                barStyle="dark-content"
+                backgroundColor='transparent'
+                translucent={true}
+            />
             <About route={route} />
             <Divider width={1.5} style={{ marginVertical: 20 }} />
             <MenuItem restaurentName={route.params.name} foods={foods} />

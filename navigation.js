@@ -17,6 +17,7 @@ const RootNavigation = () => {
     const screenOptions = {
         headerShown: false,
     }
+
     return (
         <ReduxProvider store={store}>
 

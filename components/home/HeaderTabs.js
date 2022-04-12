@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
 const HeaderTabs = ({ activeTab, setActiveTab }) => {
@@ -29,7 +29,7 @@ export default HeaderTabs
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginTop: 5,
+        marginTop: StatusBar.currentHeight,
         justifyContent: 'center',
     },
     button: {

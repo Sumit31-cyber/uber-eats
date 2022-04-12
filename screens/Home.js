@@ -1,4 +1,4 @@
-import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HeaderTabs from '../components/home/HeaderTabs'
 import SearchBar from '../components/home/SearchBar'
@@ -6,6 +6,7 @@ import Catagories from '../components/home/Catagories'
 import RestaurentItems from '../components/home/RestaurentItems'
 import BottomTab from '../components/home/BottomTab'
 import { Divider } from 'react-native-elements';
+import FocusedStatusBar from '../components/restaurentDetail/FocusedStatusBar'
 
 const YELP_API_KEY = 'BFCh_SQAE1HTIKeoKgWIG7EYZ0x3CbZtRmxW2l25OxEdtocKLsDJrNamGQALn6zBKo12fsOLKgCEyPAJlXL3mxjRvqzGPJeBgbEkSotSsbsShlX6OSWcmU5fjVpRYnYx';
 
@@ -31,7 +32,12 @@ const Home = ({ navigation }) => {
     }, [city, activeTab]);
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+            <FocusedStatusBar
+                barStyle="dark-content"
+                backgroundColor='transparent'
+                translucent={true}
+            />
             <View style={{
                 backgroundColor: 'white',
                 backgroundColor: 'white',
@@ -46,8 +52,7 @@ const Home = ({ navigation }) => {
             </ScrollView>
             <Divider width={1} />
             <BottomTab />
-            <StatusBar backgroundColor={'#eee'} barStyle='dark-content' />
-        </View>
+        </SafeAreaView>
     )
 }
 
